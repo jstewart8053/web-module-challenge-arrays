@@ -41,26 +41,30 @@ To save you from having to count the items above, you can assume that length of 
 
 i.e. is31Flavors(originalFlavors) will return TRUE.*/
 
-function is31Flavors(originalFlavors) {
+function is31Flavors(arr) {
 
-    return originalFlavors.length === 31;
+    if (arr.length === 31) {
+        return true;
+    } else {
+        return false;
+    }
 
 }
+console.log(is31Flavors(originalFlavors))
+    /* Task 2: Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. You need to modify the array to include this flavor. 
 
-/* Task 2: Corporate has come to you with an idea for a new flavor: Rainbow Sherbert! They think this will be a game changer. You need to modify the array to include this flavor. 
+    Your function should accept:
 
-Your function should accept:
+    (1) an array 
+    (2) a flavor
 
-(1) an array 
-(2) a flavor
+    Your function should add the flavor to the front of the array and console.log the resulting array.
 
-Your function should add the flavor to the front of the array and console.log the resulting array.
+    For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */
 
-For example addFlavor("Rainbow Sherbert", originalFlavors) should return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla Burnt Almond"] */
-
-function addFlavor(flavor, originalFlavors) {
-    originalFlavors.unshift(flavor);
-    return originalFlavors;
+function addFlavor(flavor, arr) {
+    arr.unshift(flavor);
+    return arr;
 }
 console.log(addFlavor('Rainbow Sherbert', originalFlavors))
 
@@ -74,9 +78,9 @@ Your function should remove a flavor from the end of the array and console.log t
 
 For example removeLastFlavor(originalFlavors) would return ["Rainbow Sherbert", "Banana Nut Fudge",..."Vanilla"]*/
 
-function removeLastFlavor(originalFlavors) {
-    originalFlavors.pop();
-    return originalFlavors;
+function removeLastFlavor(arr) {
+    arr.pop();
+    return arr;
 }
 console.log(removeLastFlavor(originalFlavors))
     /* Task 4: Write a function that returns a flavor at a given index in the array.
@@ -86,8 +90,8 @@ console.log(removeLastFlavor(originalFlavors))
     (2) an index
 
     For example, getFlavorByIndex(originalFlavors, 2) would return "Black Walnut", assuming Rainbow Sherbert has been added successfully. */
-function getFlavorByIndex(originalFlavors, index) {
-    return originalFlavors[index];
+function getFlavorByIndex(arr, index) {
+    return arr[index];
 }
 console.log(getFlavorByIndex(originalFlavors, 2))
 
@@ -105,10 +109,10 @@ Hint: You can use .splice() for this
 
 */
 
-function removeFlavorByName(originalFlavors, flavor) {
-    const removed = originalFlavors.indexOf(flavor);
-    originalFlavors.splice(removed, 1)
-    return originalFlavors;
+function removeFlavorByName(arr, flavor) {
+    const removed = arr.indexOf(flavor);
+    arr.splice(removed, 1)
+    return arr;
 }
 console.log(removeFlavorByName(originalFlavors, "Vanilla"))
 
@@ -120,8 +124,8 @@ Your function should accept:
 
 and should return a new array that is identical to the old array. You can name the new array however you'd like. */
 
-function copy(nArr, originalFlavors) {
-    nArr = [...originalFlavors]
+function copy(nArr, arr) {
+    nArr = [...arr]
     return nArr;
 }
 console.log(copy([1, 2, 3], originalFlavors))
@@ -141,16 +145,17 @@ Write a function that checks every item in the array for a given string and retu
 
     hint - you can use the .includes method to help you solve this */
 
-function filterByWord(originalFlavors, special) {
+function filterByWord(arr, special) {
     let filteredArray = [];
-    for (let i = 0; i < originalFlavors.length; i++) {
-        if (originalFlavors[i].includes(special)) {
-            filteredArray.push(originalFlavors[i])
+    for (let i = 0; i < arr.length; i++) {
+        if (arr[i].includes(special)) {
+            filteredArray.push(arr[i])
         }
+
     }
     return filteredArray;
 }
-
+console.log(filterByWord(originalFlavors, 'Chocolate'))
 
 
 /* 🧁🍦🍨 STRETCH 🍨🍦🍫*/
@@ -165,12 +170,11 @@ and should return the average number of words per item in the array.
 
 For example, getAverageWordLength(originalFlavors) should return a number between 0 and 3. */
 
-function getAverageWordLength( /*code here*/ ) {
+function getAverageWordLength(arr) {
 
-    /*code here*/
-
+    return arr.join();
 }
-
+console.log(getAverageWordLength(originalFlavors))
 
 /* STRETCH 2: Baskin Robins now offers new flavors, seasonal flavors, and even regional flavors. Write a function that will randomly select a total of 31 flavors from originalFlavors, currentFlavors, seasonalFlavors, and regionalFlavors.
 
@@ -256,8 +260,14 @@ var regionalFlavors = ["Pink Bubblegum",
     "Caramel 'n' Cookies"
 ]
 
-function getRandomFlavors( /*code here*/ ) {
-
-    /*code here*/
-
+function getRandomFlavors(arr1, arr2, arr3, arr4) {
+    var randomPool = arr1.concat(arr2).concat(arr3).concat(arr4);
+    var randomFlavors = [];
+    let holder;
+    for (let i = 0; i < 31; i++) {
+        holder = Math.floor(Math.random() * randomPool.length + 1)
+        randomFlavors.push(randomPool[holder])
+    }
+    return randomFlavors;
 }
+console.log(getRandomFlavors(originalFlavors, newFlavors, seasonalFlavors, regionalFlavors))
