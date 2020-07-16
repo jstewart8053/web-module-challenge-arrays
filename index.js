@@ -172,7 +172,13 @@ For example, getAverageWordLength(originalFlavors) should return a number betwee
 
 function getAverageWordLength(arr) {
 
-    return arr.join();
+    function getAverageWordLength(arr) {
+        let avgLength = 0;
+        for (let i = 0; i < arr.length; i++) {
+            avgLength += arr[i].split(" ").length + 1;
+        }
+        return avgLength / arr.length;
+    }
 }
 console.log(getAverageWordLength(originalFlavors))
 
